@@ -1,6 +1,9 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% block content %}
-    <h1>Welcome to Django </h1>
-    <p>Today is {{today}}</p>
+    <h1>Welcome to Smart Note </h1>
+    <br>
+    <br>
+    <br>
+    <!-- <p>Today is {{today}}</p> -->
     <a href="{% url 'notes.list' %}" class="btn btn-primary">Check out these Smart note</a>
 {% endblock %}
