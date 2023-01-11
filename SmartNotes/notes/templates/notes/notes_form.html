@@ -6,13 +6,16 @@
 
 <form method="POST">{% csrf_token %}
     {{ form.as_p }}
+    <a href="{% url 'notes.list' %}" class="btn btn-danger ">Cancle</a>
     <button type="submit" class="btn btn-success my-5">Submit</button>
+    <a href="{% url 'notes.list' %}" class="btn btn-info ">All List</a>
 </form>
 
 {% if form.errors %}
 <div class="alert alert-danger my-5">
     {{ form.errors.title.as_text}}
 </div>
+
 {% endif %}
-<a href="{% url 'notes.list' %}" class="btn btn-secondary ">Cancle</a>
+
 {% endblock %}
