@@ -1,8 +1,15 @@
 from django.shortcuts import render
 from django.http import Http404
-from django.views.generic import DetailView,ListView
+from django.views.generic import CreateView, DetailView, ListView
 
+from .forms import NotesForm
 from .models import Notes
+
+
+class NotesCreateView(CreateView):
+    model = Notes
+    success_url = '/smart/notes'
+    form_class = NotesForm
 
 
 class NotesListView(ListView):
@@ -10,20 +17,21 @@ class NotesListView(ListView):
     context_object_name = "notes"
     template_name = "notes/notes_list.html"
 
+
 class NotesDetailView(DetailView):
     model = Notes
     context_object_name = "note"
-    #template_name = "notes/notes_list.html"
-    
+    # template_name = "notes/notes_list.html"
 
-#def list(request):
-    #all_notes = Notes.objects.all()
-    #return render(request, 'notes/notes_list.html', {'notes': all_notes})
+
+# def list(request):
+    # all_notes = Notes.objects.all()
+    # return render(request, 'notes/notes_list.html', {'notes': all_notes})
 
 
 def details(request, pk):
     try:
         note = Notes.objects.get(pk=pk)
     except Notes.DoesNotExist:
-        raise Http404("Note dose'nt exit")
+        raise Http404("Note dose not exit")
     return render(request, 'notes/notes_detail.html', {'notes': note})
