@@ -19,5 +19,5 @@ class NotesForm(forms.ModelForm):
     def clean_title(self):
         title = self.cleaned_data['title']
         if 'Notes' not in title:
-            raise ValidationError('We only accept notes about Django :!')
+            raise ValidationError('We only accept validate Notes!')
         return title
